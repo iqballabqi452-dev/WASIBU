@@ -236,6 +236,7 @@
     // =============================
 
     let jenisPesananTerakhir = "";
+    let namaPelangganTerakhir = "";
 
     let bayarAsli = bayar;
 
@@ -257,6 +258,15 @@
 
         // Tampilkan pilihan Dine In / Take Away
         pilihan.innerHTML = `
+        <div style="margin-bottom: 20px;">
+    <h2>Nama Pemesan</h2>
+    <input
+        type="text"
+        id="namaPelangganWASIBU"
+        placeholder="Masukkan nama"
+        style="width: 100%; padding: 10px; box-sizing: border-box; border-radius: 8px; border: 1px solid #ccc;"
+    >
+</div>
         <div class="pilihan-jenis-pesanan-wasibu">
 
             <h2>
@@ -298,6 +308,14 @@
     window.pilihJenisPesanan = function (jenis) {
 
         jenisPesananTerakhir = jenis;
+        const inputNama = document.getElementById("namaPelangganWASIBU");
+
+        if (!inputNama || inputNama.value.trim() === "") {
+            alert("Silakan masukkan nama terlebih dahulu.");
+            return;
+        }
+
+        namaPelangganTerakhir = inputNama.value.trim();
 
         const pilihan = document.getElementById("pilihanPembayaran");
 
@@ -373,8 +391,8 @@
             `;
         });
 
-        struk.innerHTML = `
-            <div class="struk-box-wasibu">
+                 struk.innerHTML = `
+                 <div class="struk-box-wasibu">
                 <div class="struk-header-wasibu">
                     <h2>☕ WASIBU</h2>
                     <p>Struk Pembelian</p>
@@ -396,6 +414,11 @@
                     <div class="struk-baris-wasibu total">
                         <span>Total</span>
                         <strong>Rp${total.toLocaleString("id-ID")}</strong>
+                    </div>
+
+                    <div class="struk-baris-wasibu">
+                         <span>Nama</span>
+                        <strong>${namaPelangganTerakhir}</strong>
                     </div>
 
                     <div class="struk-baris-wasibu">
